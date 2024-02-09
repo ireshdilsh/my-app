@@ -12,7 +12,6 @@ export class RegisterPageComponent {
 
   userid :number=0;
   usersname :string="";
-  useremail :string="";
   userusername:string="";
   userpassword:string="";
 
@@ -25,28 +24,30 @@ export class RegisterPageComponent {
   }
 
   reset(){
-    this.userid=0;
-         this.usersname='';
-         this.useremail='';
-         this.userusername='';
-         this.userpassword='';
+         this.userid=0;
+         this.usersname="";
+         this.userusername="";
+         this.userpassword="";
   }
 
    onSubmit(){
      let data={
         "id":this.userid,
         "name":this.usersname,
-      //  "email":this.useremail,
         "username":this.userusername,
         "passsword":this.userpassword
      };
 
+      try {
         this.http.post("http://localhost:8080/add/user",data,{responseType:'text'}).subscribe((resultData:any)=>{
-         console.log(resultData);
-         alert("User Save Success");
-         this.reset();
-      });
-     
+          console.log(resultData);
+          alert("User Save Success");
+          this.reset();
+       });
+      
+      } catch (error) {
+        console.log(error);
+      }
 
   }
 
