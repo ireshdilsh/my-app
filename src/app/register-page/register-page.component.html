@@ -5,23 +5,23 @@
     
     <div class="id-field">
         <label for="typeahead-basic">Enter Your UserID</label>
-        <input id="typeahead-basic" type="text" class="form-control"/>
+        <input id="typeahead-basic" type="number" class="form-control" [(ngModel)]="userid" [ngModelOptions]="{standalone:true}"/>
     </div>
       <div class="name-field">
         <label for="typeahead-basic">Enter Your Name</label>
-        <input id="typeahead-basic" type="text" class="form-control"/>
+        <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="usersname" [ngModelOptions]="{standalone:true}"/>
       </div>
       <div class="email-field">
         <label for="typeahead-basic">Enter Your Email</label>
-        <input id="typeahead-basic" type="email" class="form-control"/>
+        <input id="typeahead-basic" type="email" class="form-control" [(ngModel)]="useremail" [ngModelOptions]="{standalone:true}"/>
       </div>
       <div class="username-field">
         <label for="typeahead-basic">Enter Your Username</label>
-        <input id="typeahead-basic" type="text" class="form-control"/>
+        <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="userusername" [ngModelOptions]="{standalone:true}"/>
       </div>
       <div class="password-field">
         <label for="typeahead-basic">Enter Your Password</label>
-        <input id="typeahead-basic" type="password" class="form-control"/>
+        <input id="typeahead-basic" type="password" class="form-control" [(ngModel)]="userpassword" [ngModelOptions]="{standalone:true}"/>
       </div>
       <div class="register-button">
         <button type="submit" class="btn btn-primary">Create Account</button>
