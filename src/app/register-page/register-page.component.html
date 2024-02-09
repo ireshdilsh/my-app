@@ -25,4 +25,12 @@
 
   </form>
 
+         <div class="display-all-users">
+
+              <ol *ngFor="let users of UserArray">
+               <li>{{users.id}}=={{users.name}}</li>
+              </ol>
+
+         </div>
+
 </div>

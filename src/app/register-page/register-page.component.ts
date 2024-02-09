@@ -21,6 +21,16 @@ export class RegisterPageComponent {
 
   getAllUsers(){
 
+    try {
+      this.http.get("http://localhost:8080/get/all/users").subscribe((resultData:any)=>{
+         console.log(resultData);
+         this.UserArray=resultData;
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   reset(){
@@ -43,6 +53,7 @@ export class RegisterPageComponent {
           console.log(resultData);
           alert("User Save Success");
           this.reset();
+          this.getAllUsers();
        });
       
       } catch (error) {
