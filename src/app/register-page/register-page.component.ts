@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-page',
@@ -8,16 +9,27 @@ import { Component } from '@angular/core';
 })
 export class RegisterPageComponent {
 
+  registerForm: FormGroup;
+
+
   UserArray :any[]=[];
 
-  userid :number=0;
-  usersname :string="";
-  userusername:string="";
-  userpassword:string="";
+  count=0;
 
-  constructor(private http:HttpClient){
+
+  constructor(private http:HttpClient,private builder:FormBuilder){
+
+    this.registerForm=builder.group({
+        id:['',Validators.required],
+        name:['',Validators.required],
+        username:['',Validators.required],
+        password:['',Validators.required]
+    });
+
     this.getAllUsers();
   }
+
+  ///getallusers method-----> getMapping part
 
   getAllUsers(){
 
@@ -33,33 +45,36 @@ export class RegisterPageComponent {
 
   }
 
-  reset(){
-         this.userid=0;
-         this.usersname="";
-         this.userusername="";
-         this.userpassword="";
+  reset=()=>{
+    this.registerForm.reset();
   }
+
+  ////save Student in databse ---------->  postMapping part
 
    onSubmit(){
-     let data={
-        "id":this.userid,
-        "name":this.usersname,
-        "username":this.userusername,
-        "passsword":this.userpassword
-     };
+     const url="http://localhost:8080/add/user";
+     const formValue=this.registerForm.value;
 
-      try {
-        this.http.post("http://localhost:8080/add/user",data,{responseType:'text'}).subscribe((resultData:any)=>{
-          console.log(resultData);
-          alert("User Save Success");
+     try {
+        this.http.post(url,formValue).subscribe(response=>{
+          console.log(response);
+          alert("good save")
           this.reset();
-          this.getAllUsers();
-       });
-      
-      } catch (error) {
+        });
+     } catch (error) {
         console.log(error);
-      }
-
+        alert("error");
+     }
   }
 
+  increment=()=>{
+    this.count++;
+  }
+   desc=()=>{
+    if(this.count!=0){
+      this.count=this.count-1;
+    }
+   }
+
+  
 }

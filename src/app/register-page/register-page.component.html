@@ -1,27 +1,30 @@
 <p>register-page works!</p>
 <div class="register-form">
 
-  <form (ngSubmit)="onSubmit()">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     
     <div class="id-field">
         <label for="typeahead-basic">Enter Your UserID</label>
-        <input id="typeahead-basic" type="number" class="form-control" [(ngModel)]="userid" [ngModelOptions]="{standalone:true}"/>
+        <input type="text" formControlName="id" placeholder="id" required>
     </div>
       <div class="name-field">
         <label for="typeahead-basic">Enter Your Name</label>
-        <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="usersname" [ngModelOptions]="{standalone:true}"/>
+        <input type="text" formControlName="name" placeholder="name" required>
+
       </div>
       <div class="username-field">
         <label for="typeahead-basic">Enter Your Username</label>
-        <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="userusername" [ngModelOptions]="{standalone:true}"/>
+        <input type="text" formControlName="username" placeholder="username" required>
+
       </div>
       <div class="password-field">
         <label for="typeahead-basic">Enter Your Password</label>
-        <input id="typeahead-basic" type="password" class="form-control" [(ngModel)]="userpassword" [ngModelOptions]="{standalone:true}"/>
+        <input type="password" formControlName="password" placeholder="Password" required>
       </div>
       <div class="register-button">
         <button type="submit" class="btn btn-primary">Create Account</button>
       </div>
+
 
   </form>
 
@@ -32,5 +35,12 @@
               </ol>
 
          </div>
+<div class="red-round">
+   {{count}}
+</div>
 
+<div class="button">
+  <button (click)="increment()">increment</button>
+  <button (click)="desc()">desc</button>
+</div>
 </div>
