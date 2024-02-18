@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -17,7 +18,7 @@ export class RegisterPageComponent {
   count=0;
 
 
-  constructor(private http:HttpClient,private builder:FormBuilder){
+  constructor(private http:HttpClient,private builder:FormBuilder,private router:Router){
 
     this.registerForm=builder.group({
         id:['',Validators.required],
@@ -29,6 +30,10 @@ export class RegisterPageComponent {
     this.getAllUsers();
   }
 
+  gotoRegister=()=>{
+       this.router.navigate(['login']);
+      }
+  
   ///getallusers method-----> getMapping part
 
   getAllUsers(){
